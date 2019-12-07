@@ -40,11 +40,19 @@ fun main(args: Array<String>) {
 
     val path1 = input.first().generatePath()
     val path2 = input.last().generatePath()
-    
+
     val intersections = path1.intersect(path2)
 
-    println(intersections)
-    
+    // Part 1
     println(intersections.getNearestManhattanDistance())
+
+    // Part 2
+    val leastNumberOfSteps = intersections
+            .filterNot { it == Pair(0, 0) }
+            .map { path1.indexOf(it) + path2.indexOf(it) }
+            .sorted()
+            .first()
+
+    println(leastNumberOfSteps)
 }
 
