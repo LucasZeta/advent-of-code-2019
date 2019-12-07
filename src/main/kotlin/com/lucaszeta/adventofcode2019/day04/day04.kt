@@ -6,7 +6,13 @@ class Password(private val password: Int) {
 
     private fun hasCorrectAmountOfDigits() = password.toString().length == 6
 
-    private fun hasDoubleDigits() = password.toString().matches("[0-9]?.*(\\d)\\1+[0-9]?.*".toRegex())
+    private fun hasRepeatedDigits() = password.toString().matches("[0-9]?.*(\\d)\\1+[0-9]?.*".toRegex())
+
+    private fun hasDoubleDigits(): Boolean {
+        val result = "(\\d)\\1+".toRegex().findAll(password.toString())
+
+        return result.any { it.value.length == 2 }
+    }
 
     private fun digitsNeverDecrease(): Boolean {
         val digits = password.toString()
@@ -24,11 +30,19 @@ class Password(private val password: Int) {
     }
 
     fun isValid() = hasCorrectAmountOfDigits() &&
+            hasRepeatedDigits() &&
+            digitsNeverDecrease()
+
+    fun enhancedIsValid() = hasCorrectAmountOfDigits() &&
             hasDoubleDigits() &&
             digitsNeverDecrease()
 }
 
 fun main(args: Array<String>) {
 
+    // Part 1
     println(input.count { it.toPassword().isValid() })
+
+    // Part 2
+    println(input.count { it.toPassword().enhancedIsValid() })
 }

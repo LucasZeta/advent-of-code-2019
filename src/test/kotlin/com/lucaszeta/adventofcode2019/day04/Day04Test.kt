@@ -19,6 +19,14 @@ class Day04Test {
     }
 
     @Test
+    fun assertAdjacentNumbersDoRepeatInBlocksOfTwo() {
+        assertFalse(123444.toPassword().enhancedIsValid())
+        assertFalse(123334.toPassword().enhancedIsValid())
+        assertTrue(111122.toPassword().enhancedIsValid())
+        assertTrue(112233.toPassword().enhancedIsValid())
+    }
+
+    @Test
     fun assertNumberHaveSixDigits() {
         assertFalse(12234.toPassword().isValid())
         assertTrue(123345.toPassword().isValid())
