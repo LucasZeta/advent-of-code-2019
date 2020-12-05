@@ -52,5 +52,6 @@ fun main() {
     val layerWithFewestZeros = fetchLayerWithFewest(layers, 0)
     val result = layerWithFewestZeros.flatten().count { it == 1 } * layerWithFewestZeros.flatten().count { it == 2 }
 
-    println(result)
+    println("Multiplication of layer with fewest zeros: %d".format(result))
+    println("Message:\n%s".format(findMessage(layers, width, height)))
 }
