@@ -58,4 +58,55 @@ class Day08Test {
             fetchLayerWithFewest(listOf(), 0)
         }
     }
+
+    @Test
+    fun `Should find top-most valid pixel in layer list`() {
+        val layers = listOf(
+                listOf(
+                        listOf(0, 2),
+                        listOf(2, 2)
+                ),
+                listOf(
+                        listOf(1, 1),
+                        listOf(2, 2)
+                ),
+                listOf(
+                        listOf(2, 2),
+                        listOf(1, 2)
+                ),
+                listOf(
+                        listOf(0, 0),
+                        listOf(0, 0)
+                )
+        )
+
+        assertEquals(0, findTopPixel(layers, 0, 0))
+        assertEquals(1, findTopPixel(layers, 0, 1))
+        assertEquals(1, findTopPixel(layers, 1, 0))
+        assertEquals(0, findTopPixel(layers, 1, 1))
+    }
+
+    @Test
+    fun `Should print message based on top-most pixel`() {
+        val layers = listOf(
+                listOf(
+                        listOf(0, 2),
+                        listOf(2, 2)
+                ),
+                listOf(
+                        listOf(1, 1),
+                        listOf(2, 2)
+                ),
+                listOf(
+                        listOf(2, 2),
+                        listOf(1, 2)
+                ),
+                listOf(
+                        listOf(0, 0),
+                        listOf(0, 0)
+                )
+        )
+
+        assertEquals("-O\nO-\n", findMessage(layers, 2, 2))
+    }
 }
