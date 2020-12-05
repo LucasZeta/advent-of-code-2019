@@ -11,22 +11,43 @@ class Day08Test {
     fun `Should map string into layers`() {
         val input = "123456789012345678901234567890"
         val expectedOutput = listOf(
-                listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 0),
-                listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 0),
-                listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
+                listOf(
+                        listOf(1, 2, 3, 4, 5),
+                        listOf(6, 7, 8, 9, 0)
+                ),
+                listOf(
+                        listOf(1, 2, 3, 4, 5),
+                        listOf(6, 7, 8, 9, 0)
+                ),
+                listOf(
+                        listOf(1, 2, 3, 4, 5),
+                        listOf(6, 7, 8, 9, 0)
+                )
         )
 
-        assertEquals(expectedOutput, readLayers(input, 2, 5))
+        assertEquals(expectedOutput, readLayers(input, 5, 2))
     }
 
     @Test
     fun `Should find layer with fewest zeros`() {
         val input = listOf(
-                listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 0),
-                listOf(1, 2, 3, 4, 5, 6, 7, 0, 0, 0),
-                listOf(1, 2, 3, 4, 5, 6, 7, 8, 0, 0)
+                listOf(
+                        listOf(1, 2, 3, 0, 5),
+                        listOf(6, 7, 8, 9, 0)
+                ),
+                listOf(
+                        listOf(1, 2, 3, 4, 5),
+                        listOf(6, 7, 8, 9, 0)
+                ),
+                listOf(
+                        listOf(1, 2, 0, 4, 5),
+                        listOf(6, 0, 8, 9, 0)
+                )
         )
-        val expectedOutput = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
+        val expectedOutput = listOf(
+                listOf(1, 2, 3, 4, 5),
+                listOf(6, 7, 8, 9, 0)
+        )
 
         assertEquals(expectedOutput, fetchLayerWithFewest(input, 0))
     }
